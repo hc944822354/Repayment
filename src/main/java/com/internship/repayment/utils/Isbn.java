@@ -8,5 +8,5 @@ public class Isbn {
     }
     public String getIsbn() {
         return isbn;
-    } 
+    }
 }

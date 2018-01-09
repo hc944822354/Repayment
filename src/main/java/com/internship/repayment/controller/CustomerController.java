@@ -1,6 +1,10 @@
 package com.internship.repayment.controller;
 
 import com.internship.repayment.entity.Customer;
+import com.internship.repayment.repository.CustomerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -10,12 +14,17 @@ import java.util.*;
 public class CustomerController {
     // 创建线程安全的Map
     static Map<Long,Customer> customers = Collections.synchronizedMap(new HashMap<Long, Customer>());
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @RequestMapping(value="/get", method= RequestMethod.GET)
     public List<Customer> getCustomerList() {
         // 处理"/Customer/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
-        List<Customer> r = new ArrayList<Customer>(customers.values());
+
+        List<Customer> r = customerRepository.findAll();
+        Logger logger = LoggerFactory.getLogger(CustomerController.class);
+        logger.info(r.toString());
         return r;
     }
 

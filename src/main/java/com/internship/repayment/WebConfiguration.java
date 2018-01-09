@@ -13,7 +13,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.List;
 
 @Configuration
-public class WebConfiguration extends WebMvcConfigurerAdapter {
+public class WebConfiguration extends WebMvcConfigurerAdapter {/*
     @Bean
     public RemoteIpFilter remoteIpFilter(){
         return new RemoteIpFilter();
@@ -45,5 +45,5 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.setUseSuffixPatternMatch(false).setUseTrailingSlashMatch(true);
-    }
+    }*/
 }
