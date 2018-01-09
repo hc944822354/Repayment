@@ -11,7 +11,7 @@ public class CustomerController {
     // 创建线程安全的Map
     static Map<Long,Customer> customers = Collections.synchronizedMap(new HashMap<Long, Customer>());
 
-    @RequestMapping(value="/", method= RequestMethod.GET)
+    @RequestMapping(value="/get", method= RequestMethod.GET)
     public List<Customer> getCustomerList() {
         // 处理"/Customer/"的GET请求，用来获取用户列表
         // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递
