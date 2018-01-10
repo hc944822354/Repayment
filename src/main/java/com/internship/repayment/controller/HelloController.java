@@ -10,12 +10,12 @@ public class HelloController {
 
     @ResponseBody
     @RequestMapping("/hello")
-    public String hello() {
-        return "Hello World";
+    public String hello() throws Exception {
+        throw new Exception();
     }
 
     @RequestMapping("/")
-    public String index(ModelMap map) {
+    public String index(ModelMap map) throws Exception{
         map.addAttribute("host", "http://blog.didispace.com");
         return "index";
     }
