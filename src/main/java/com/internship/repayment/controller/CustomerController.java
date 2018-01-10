@@ -26,7 +26,7 @@ public class CustomerController{
         Result<Customer> result = customerService.login(username,password);
         if (result.getState().equals(Result.SUCCESS)){
             map.addAttribute("name",result.getResult().getName());
-            return "customerloginsuccess";
+            return "customer_login_success";
         }else {
             Exception e = new Exception("密码错误");
             map.addAttribute("exception",e);
