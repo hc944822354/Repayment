@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/repayment/customer")
 public class CustomerController{
     // 创建线程安全的Map
     static Map<Long,Customer> customers = Collections.synchronizedMap(new HashMap<Long, Customer>());

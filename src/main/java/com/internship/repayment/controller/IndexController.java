@@ -6,18 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
-
-    @ResponseBody
-    @RequestMapping("/hello")
-    public String hello() throws Exception {
-        throw new Exception();
-    }
+@RequestMapping("/repayment")
+public class IndexController {
 
     @RequestMapping("/")
-    public String index(ModelMap map) throws Exception{
-        map.addAttribute("host", "http://blog.didispace.com");
+    public String index() throws Exception {
         return "index";
     }
+
 
 }
