@@ -1,21 +1,44 @@
 package com.internship.repayment.controller;
 
+import com.internship.repayment.VO.Result;
 import com.internship.repayment.entity.Customer;
 import com.internship.repayment.repository.CustomerRepository;
+import com.internship.repayment.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RestController
+@Controller
 @RequestMapping("/customer")
-public class CustomerController {
+public class CustomerController{
     // 创建线程安全的Map
     static Map<Long,Customer> customers = Collections.synchronizedMap(new HashMap<Long, Customer>());
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login(@RequestParam String username, @RequestParam String password, ModelMap map){
+        Result<Customer> result = customerService.login(username,password);
+        if (result.getState().equals(Result.SUCCESS)){
+            map.addAttribute("name",result.getResult().getName());
+            return "customer_login_success";
+        }else {
+            Exception e = new Exception("密码错误");
+            map.addAttribute("exception",e);
+            map.addAttribute("url",username);
+            return "error";
+        }
+
+    }
+
+    /*
+    @Autowired
+    private CustomerService customerService;
 
     @RequestMapping(value="/get", method= RequestMethod.GET)
     public List<Customer> getCustomerList() {
@@ -58,5 +81,5 @@ public class CustomerController {
         // 处理"/users/{id}"的DELETE请求，用来删除User
         customers.remove(id);
         return "success";
-    }
+    }*/
 }
