@@ -11,6 +11,8 @@ public class Customer {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = true,unique = true)
+    private String username;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -20,6 +22,13 @@ public class Customer {
     private String address;
     private String reputation;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Long getId() {
         return id;

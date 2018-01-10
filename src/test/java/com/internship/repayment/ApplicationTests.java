@@ -24,6 +24,7 @@ public class ApplicationTests {
     @Test
     public void testCustomerRepositpry() throws Exception {
         Customer customer = new Customer();
+        customer.setUsername("123456");
         customer.setName("张三");
         customer.setPassword("sadsfasfa");
         customer.setAddress("北京");
