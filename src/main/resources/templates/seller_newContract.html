@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>客户回款后台管理</title>
+     <script type="text/javascript">
+    function check() {	 
+ 	  if(document.forms.myform.conname.value==""){
+		   alert("合同名字不能为空");
+		  document.forms.myform.conname.focus();
+		   return false;
+	   }
+ 	 if(document.forms.myform.begintime.value==""){
+		   alert("合同签订时间不能为空");
+		  document.forms.myform.begintime.focus();
+		   return false;
+	   }
+ 	 if(document.forms.myform.cuttime.value==""){
+		   alert("还款截至日期不能为空");
+		  document.forms.myform.cuttime.focus();
+		   return false;
+	   }
+ 	 if(document.forms.myform.summoney.value==""){
+		   alert("合同金额不能为空");
+		  document.forms.myform.summoney.focus();
+		   return false;
+	   }
+ 	  if(!isNumber(document.forms.myform.summoney.value)){
+		   alert("请按照格式输入正确的金额");
+		  document.forms.myform.summoney.focus();
+		   return false;
+	   }
+ }
+    function isNumber(number){
+   	 var re = new RegExp(/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/);
+   	  return re.test(number);
+       } 
+</script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/libs/modernizr.min.js"></script>
+</head>
+<body>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <ul class="navbar-list clearfix">
+                <li><a class="on" >销售员界面</a></li>            
+            </ul>          
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li>某某某,欢迎你&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+               <li><a href="Sellerindex.html">切换用户</a></li>
+                <li><a href="index.html">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                      <li>
+                    <a href="#"><i class="icon-font"></i>信息查询</a>
+                    <ul class="sub-menu">
+                        <li><a href="seller_queryCustomer.html"><i class="icon-font"></i>查询负责客户信息</a></li>
+                        <li><a href="seller_queryContract.html"><i class="icon-font"></i>相关合同信息查询</a></li>
+                        <li><a href="seller_queryCustomerBill.html"><i class="icon-font"></i>客户还款记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-font"></i>销售员操作</a>
+                    <ul class="sub-menu">
+                        <li><a href="seller_query_self.html"><i class="icon-font"></i>个人信息查询</a></li>
+                        <li><a href="seller_update_self.html"><i class="icon-font"></i>修改基本信息</a></li>   
+                        <li><a href="seller_newContract.html"><i class="icon-font"></i>签订合同</a></li> 
+                        <li><a href="seller_new_customer.html"><i class="icon-font"></i>新增客户</a></li>                                                            
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+            <i class="icon-font"></i>
+            <a href="seller_login_success.html">首页</a>
+            <span class="crumb-step">&gt;</span>
+            <span class="crumb-name">签订合同</span>
+            </div>
+        </div>
+                   <div class="result-wrap">
+            <div class="result-title">
+                <h1>请输入要新建的合同信息:</h1>
+            </div>
+             <div class="result-content">
+                <form action="Contract_newContractSubmit.action" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                           <tr>
+									<th><i class="require-red"></i>客户姓名：</th>
+                                <td>
+                                  <select name="ssex" id="catid" class="required">
+                                <option value="#####" >#####</option>
+                                <option value="#####" selected="#####">#####</option>
+                                <option value="#####" >#####</option>
+                                <option value="#####" >#####</option>
+                                </select>
+                                </td>
+                           </tr>
+                            <tr>
+                                <th>合同名称：</th>
+                                <td><input class="common-text" name="conname" size="50"  type="text" placeholder="请输入新合同的名字"></input></td>
+                            </tr>
+                             <tr>
+                                <th>合同签订时间：</th>
+                                <td><input class="common-text" name="begintime" size="50"  type="date"  ></input></td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="require-red"></i>合同还款截止时间：</th>
+                                <td><input class="common-text" name="cuttime" size="50"  type="date"  placeholder="请输入客户最终的截止还款日期"></input></td>
+                            </tr>  
+                             <tr>
+                                <th><i class="require-red"></i>合同欠款金额：</th>
+                                <td><input class="common-text" name="summoney" size="50"  type="text"  placeholder="请输入客户需要还款的总金额，例如100或者100.00"></input></td>
+                            </tr>                                                
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit" onclick="return check(this)">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
