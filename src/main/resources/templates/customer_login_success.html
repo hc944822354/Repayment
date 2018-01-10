@@ -3,9 +3,9 @@
 <head lang="en">
     <title>客户回款后台管理</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/static/css/common.css" th:href="@{/static/css/common.css}"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css" th:href="@{/static/css/main.css}"/>
-    <script type="text/javascript" src="../static/js/libs/modernizr.min.js" th:src="@{/static/js/libs/modernizr.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" src="../js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
 <body>
 <div class="topbar-wrap white">
@@ -17,8 +17,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <div th:text="${name}"></div>
-                <li>欢迎你&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li th:text="${name}+'欢迎你'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                 <li><a href="Customerindex.html">切换用户</a></li>
                 <li><a href="index.html">退出登录</a></li>
             </ul>
