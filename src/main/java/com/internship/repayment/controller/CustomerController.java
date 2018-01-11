@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +22,25 @@ public class CustomerController{
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(@RequestParam String username, @RequestParam String password, ModelMap map){
-        Result<Customer> result = customerService.login(username,password);
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String login(Model model){
+        Customer customer = new Customer();
+        model.addAttribute("customer",customer);
+        return "customer_index";
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String login(@ModelAttribute Customer customer, ModelMap map){
+        Result<Customer> result = customerService.login(customer.getUsername(),customer.getPassword());
         if (result.getState().equals(Result.SUCCESS)){
             map.addAttribute("name",result.getResult().getName());
             return "customer_login_success";
         }else {
             Exception e = new Exception("密码错误");
             map.addAttribute("exception",e);
-            map.addAttribute("url",username);
+            map.addAttribute("url",customer.getUsername());
             return "error";
         }
-
     }
 
     /*

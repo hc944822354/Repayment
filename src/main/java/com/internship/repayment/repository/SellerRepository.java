@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface SellerRepository extends JpaRepository<Seller,Long> {
-    @Query("select s from Seller s where s.name =:username")
+    @Query("select s from Seller s where s.username =:username")
     Seller findSellerByName(@Param("username") String username);
-
-
 }
