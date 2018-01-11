@@ -85,4 +85,18 @@ public class Customer {
     public void setReputation(String reputation) {
         this.reputation = reputation;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerid=" + customerid +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", telphone='" + telphone + '\'' +
+                ", address='" + address + '\'' +
+                ", reputation='" + reputation + '\'' +
+                '}';
+    }
 }

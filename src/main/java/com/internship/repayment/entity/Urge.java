@@ -40,4 +40,13 @@ public class Urge {
     public void setUrgetime(Date urgetime) {
         this.urgetime = urgetime;
     }
+
+    @Override
+    public String toString() {
+        return "Urge{" +
+                "urgeid=" + urgeid +
+                ", contract=" + contract +
+                ", urgetime=" + urgetime +
+                '}';
+    }
 }

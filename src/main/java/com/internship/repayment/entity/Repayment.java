@@ -58,4 +58,15 @@ public class Repayment {
     public void setPaymoney(Double paymoney) {
         this.paymoney = paymoney;
     }
+
+    @Override
+    public String toString() {
+        return "Repayment{" +
+                "rapaymentid=" + rapaymentid +
+                ", contract=" + contract +
+                ", rapaymentname='" + rapaymentname + '\'' +
+                ", paytime=" + paytime +
+                ", paymoney=" + paymoney +
+                '}';
+    }
 }

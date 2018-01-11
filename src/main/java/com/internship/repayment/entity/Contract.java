@@ -93,4 +93,18 @@ public class Contract {
     public void setSummoney(Double summoney) {
         this.summoney = summoney;
     }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "contractid=" + contractid +
+                ", customer=" + customer +
+                ", seller=" + seller +
+                ", contractname='" + contractname + '\'' +
+                ", begintime=" + begintime +
+                ", cuttime=" + cuttime +
+                ", summoney=" + summoney +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

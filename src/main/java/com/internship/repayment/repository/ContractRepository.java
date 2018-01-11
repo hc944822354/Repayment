@@ -14,8 +14,8 @@ public interface ContractRepository extends JpaRepository<Contract,Long> {
     Contract findContractByContractname(@Param("contractname") String contractname);
 
     // 根据账号查询用户相关合同
-    //Query("select n from Contract c where c.customer.username=:username")
-    //List<Contract> findContractsByCustomer_Username(@Param("username") String username);
+    @Query("select c from Contract c where c.customer.username=:username")
+    List<Contract> findContractsByCustomer_Username(@Param("username") String username);
 
     //根据账号查询销售员相关合同
     @Query("select c from Contract c where c.seller.username=:username")

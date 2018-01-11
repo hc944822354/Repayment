@@ -81,4 +81,17 @@ public class Seller {
     public void setTelphone(String telphone) {
         this.telphone = telphone;
     }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sellerid=" + sellerid +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", job='" + job + '\'' +
+                ", telphone='" + telphone + '\'' +
+                '}';
+    }
 }
