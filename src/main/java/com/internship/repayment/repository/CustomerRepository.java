@@ -10,5 +10,7 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     @Query("select c from Customer c where c.username=:username")
     Customer findCustomerByUsername(@Param("username")String username);
-    
+
+    @Query("select c from Customer c where c in ?1")
+    List<Customer> findCustomerInCustomerList(List<Customer> customers);
 }

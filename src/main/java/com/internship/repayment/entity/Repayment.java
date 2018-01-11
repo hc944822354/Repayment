@@ -1,9 +1,6 @@
 package com.internship.repayment.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,6 +9,7 @@ public class Repayment {
     @GeneratedValue
     private Long rapaymentid;
 
+    @ManyToOne
     @JoinColumn(name = "contractid")
     private Contract contract;
 

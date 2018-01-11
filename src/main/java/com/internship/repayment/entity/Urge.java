@@ -1,6 +1,5 @@
 package com.internship.repayment.entity;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Date;
