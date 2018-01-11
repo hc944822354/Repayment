@@ -6,21 +6,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Seller {
     @Id
     @GeneratedValue
-    private Long customerid;
+    private Long sellerid;
 
     @Column(nullable = true,unique = true)
     private String username;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String password;
+
     private String gender;
+
+    private String job;
+
     private String telphone;
-    private String address;
-    private String reputation;
+
+    public Long getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(Long sellerid) {
+        this.sellerid = sellerid;
+    }
 
     public String getUsername() {
         return username;
@@ -28,14 +40,6 @@ public class Customer {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getCustomerid() {
-        return customerid;
-    }
-
-    public void setCustomerid(Long customerid) {
-        this.customerid = customerid;
     }
 
     public String getName() {
@@ -62,27 +66,19 @@ public class Customer {
         this.gender = gender;
     }
 
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
     public String getTelphone() {
         return telphone;
     }
 
     public void setTelphone(String telphone) {
         this.telphone = telphone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getReputation() {
-        return reputation;
-    }
-
-    public void setReputation(String reputation) {
-        this.reputation = reputation;
     }
 }
