@@ -1,7 +1,9 @@
 package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
+import com.internship.repayment.entity.Contract;
 import com.internship.repayment.entity.Customer;
+import com.internship.repayment.entity.Seller;
 import com.internship.repayment.repository.CustomerRepository;
 import com.internship.repayment.service.CustomerService;
 import org.slf4j.Logger;
@@ -22,6 +24,8 @@ public class CustomerController{
     @Autowired
     private CustomerService customerService;
 
+
+
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String login(Model model){
         Customer customer = new Customer();
@@ -33,7 +37,8 @@ public class CustomerController{
     public String login(@ModelAttribute Customer customer, ModelMap map){
         Result<Customer> result = customerService.login(customer.getUsername(),customer.getPassword());
         if (result.getState().equals(Result.SUCCESS)){
-            map.addAttribute("name",result.getResult().getName());
+            map.addAttribute("customer",result.getResult());
+            map.addAttribute("query_seller","/repayment/customer/querySeller");
             return "customer_login_success";
         }else {
             Exception e = new Exception("密码错误");
@@ -42,6 +47,49 @@ public class CustomerController{
             return "error";
         }
     }
+
+    @RequestMapping(value = "/querySeller",method = RequestMethod.GET)
+    public  String querySeller(@RequestParam String username,ModelMap map){
+        List<Seller> sellers=customerService.querySeller(username);
+        if(sellers!=null)
+        {
+            map.addAttribute("sellers",sellers);
+
+
+
+            return "customer_querySeller";
+        }
+        else
+        {
+            Exception e=new Exception("没有责任销售员");
+            map.addAttribute("exception",e);
+
+            return "error";
+
+        }
+
+
+    }
+
+    @RequestMapping(value = "/queryContract",method = RequestMethod.GET)
+    public  String queryContract(@RequestParam String username,ModelMap map){
+        List<Contract> contracts=customerService.queryContract(username);
+        if (contracts!=null)
+        {
+            map.addAttribute("contracts",contracts);
+            return "customer_queryContract";
+        }
+        else
+        {
+            Exception e=new Exception("没有合同");
+            map.addAttribute("exception",e);
+
+            return "error";
+
+        }
+
+    }
+
 
     /*
     @Autowired

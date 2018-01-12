@@ -13,4 +13,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
     @Query("select c from Customer c where c in ?1")
     List<Customer> findCustomerInCustomerList(List<Customer> customers);
+
+
 }

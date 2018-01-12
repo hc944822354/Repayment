@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
     <script type="text/javascript" src="../js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
-<body>
+<body th:object="${customer}">
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
@@ -17,7 +17,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li th:text="${name}+'欢迎你'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li th:text="*{name}+'欢迎你'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                 <li><a href="customer_index.html">切换用户</a></li>
                 <li><a href="index.html">退出登录</a></li>
             </ul>
@@ -34,8 +34,8 @@
                 <li>
                     <a href="#"><i class="icon-font"></i>信息查询</a>
                     <ul class="sub-menu">
-                        <li><a href="customer_querySeller.html"><i class="icon-font"></i>查询责任销售员</a></li>
-                        <li><a href="customer_queryContract.html"><i class="icon-font"></i>合同信息查询</a></li>
+                        <li><a th:href="@{/repayment/customer/querySeller(username=*{username})}" ><i class="icon-font"></i>查询责任销售员</a></li>
+                        <li><a th:href="@{/repayment/customer/queryContract(username=*{username})}"><i class="icon-font"></i>合同信息查询</a></li>
                         <li><a href="customer_queryRepayment.html"><i class="icon-font"></i>回款记录查询</a></li>
                         <li><a href="customer_queryUrgeBill.html"><i class="icon-font"></i>催款记录查询</a></li>
                     </ul>
