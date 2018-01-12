@@ -3,7 +3,7 @@
 <head>
     <title>客户回款后台管理</title>
     <link rel="stylesheet" type="text/css" href="../static/css/common.css" th:href="@{/css/common.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}"/>
     <script type="text/javascript" src="../static/js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
 <body>
@@ -15,8 +15,8 @@
             </ul>          
         </div>
         <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li th:text="">某某某,欢迎你&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <ul class="top-info-list clearfix" >
+                <li th:text="欢迎你">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                <li><a href="customer_index.html">切换用户</a></li>
                 <li><a href="index.html">退出登录</a></li>
             </ul>
@@ -75,24 +75,12 @@
 									<td>催款时间</td>							
 									
 						 </tr>
-						  <tr class="list">
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                </tr>
-                              <tr class="list">
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                </tr>
-                                  <tr class="list">
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                    <td>######</td>
-                                </tr>    
+						  <tr class="list" th:each="urgeBill:${urgeBills}">
+                              <td th:text="*{urgeBill.contract.contractname}"></td>
+                              <td th:text="*{urgeBill.contract.seller.name}"></td>
+                              <td th:text="*{urgeBill.contract.cuttime}"></td>
+                              <td th:text="*{urgeBill.urgetime}"></td>
+                          </tr>
                          </table>
                     </div>
                 </div>              

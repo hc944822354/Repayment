@@ -35,7 +35,18 @@ public class CustomerServiceImpl implements CustomerService{
         return result;
     }
 
-
+    @Override
+    public Result<Customer> findCustomer(String username) {
+        Customer customer = customerRepository.findCustomerByUsername(username);
+        Result<Customer> result;
+        if (customer!=null){
+            result = Result.getSuccessInstance(customer);
+            result.setMsg("用户存在");
+        }else {
+            result = Result.getFailInstance("用户不存在",null);
+        }
+        return result;
+    }
 
 
 }

@@ -35,14 +35,14 @@ public class ContractRepositoryTest {
     public void testContractInsert() throws Exception{
         Contract contract=new Contract();
         Customer customer=customerRepository.findCustomerByUsername("123457");
-        Seller seller=sellerRepository.findSellerByName("123908");
+        Seller seller=sellerRepository.findSellerByName("098766");
 
-        contract.setContractname("食品合同");
+        contract.setContractname("家具合同");
         contract.setCustomer(customer);
         contract.setSeller(seller);
         contract.setBegintime(new Date());
         contract.setCuttime(new Date());
-        contract.setDescription("这是一份食品合同");
+        contract.setDescription("这是一份家具合同");
         contract.setSummoney(5000.0);
         contractRepository.save(contract);
 

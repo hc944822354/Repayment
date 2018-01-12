@@ -10,4 +10,5 @@ import java.util.List;
 @Service
 public interface CustomerService {
     Result<Customer> login(String username, String password);
+    Result<Customer> findCustomer(String username);
 }

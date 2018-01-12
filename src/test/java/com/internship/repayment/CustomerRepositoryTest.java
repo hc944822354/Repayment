@@ -20,8 +20,8 @@ public class CustomerRepositoryTest {
     @Test
     public void testCustomerInsert() throws Exception {
         Customer customer = new Customer();
-        customer.setUsername("123456");
-        customer.setName("张三");
+        customer.setUsername("123457");
+        customer.setName("哈哈");
         customer.setPassword("sadsfasfa");
         customer.setAddress("北京");
         customer.setGender("男");
