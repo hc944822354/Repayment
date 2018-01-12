@@ -34,9 +34,9 @@
                 <li>
                     <a href="#"><i class="icon-font"></i>信息查询</a>
                     <ul class="sub-menu">
-                        <li><a th:href="@{/repayment/customer/querySeller(username=*{username})}" ><i class="icon-font"></i>查询责任销售员</a></li>
-                        <li><a th:href="@{/repayment/customer/queryContract(username=*{username})}"><i class="icon-font"></i>合同信息查询</a></li>
-                        <li><a href="customer_queryRepayment.html"><i class="icon-font"></i>回款记录查询</a></li>
+                        <li><a th:href="@{/repayment/seller/querySeller(username=*{username})}" ><i class="icon-font"></i>查询责任销售员</a></li>
+                        <li><a th:href="@{/repayment/contract/queryContract(username=*{username})}"><i class="icon-font"></i>合同信息查询</a></li>
+                        <li><a th:href="@{/repayment/repayment/queryRepayment(username=*{username})}"><i class="icon-font"></i>回款记录查询</a></li>
                         <li><a th:href="@{/repayment/urge/queryUrgeBills(username=*{username})}"><i class="icon-font"></i>催款记录查询</a></li>
                     </ul>
                 </li>

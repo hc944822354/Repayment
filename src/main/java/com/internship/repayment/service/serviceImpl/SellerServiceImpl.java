@@ -10,28 +10,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+
 @Service
 public class SellerServiceImpl implements SellerService {
     @Autowired
     private ContractRepository contractRepository;
     @Override
-    public Result<List<Seller>> querySeller(String username){
+    public Result <List<Seller> >querySeller(String username){
         List<Contract> contracts=contractRepository.findContractsByCustomer_Username(username);
-        Result<List<Seller>> result = new Result<>();
+        Result<List<Seller>> results;
         if(contracts!=null) {
             List<Seller> sellers = new LinkedList<Seller>();
-            result = Result.getSuccessInstance(sellers);
             for (Contract contract : contracts
                     ) {
                 sellers.add(contract.getSeller());
 
             }
-            return result;
+            results=Result.getSuccessInstance(sellers);
+            results.setMsg("查询成功");
         }
         else
-            result = Result.getFailInstance("没有相关销售员",null);
-            return result;
+            results=Result.getFailInstance("没有负责销售员",null);
 
+        return results;
 
     }
 }

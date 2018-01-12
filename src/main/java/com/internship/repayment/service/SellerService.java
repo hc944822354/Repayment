@@ -6,5 +6,5 @@ import com.internship.repayment.entity.Seller;
 import java.util.List;
 
 public interface SellerService {
-    Result<List<Seller>> querySeller(String username);
+   Result<List<Seller>> querySeller(String username);
 }
