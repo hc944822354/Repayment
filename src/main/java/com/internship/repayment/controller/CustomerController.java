@@ -48,46 +48,10 @@ public class CustomerController{
         }
     }
 
-    @RequestMapping(value = "/querySeller",method = RequestMethod.GET)
-    public  String querySeller(@RequestParam String username,ModelMap map){
-        List<Seller> sellers=customerService.querySeller(username);
-        if(sellers!=null)
-        {
-            map.addAttribute("sellers",sellers);
 
-
-
-            return "customer_querySeller";
-        }
-        else
-        {
-            Exception e=new Exception("没有责任销售员");
-            map.addAttribute("exception",e);
-
-            return "error";
-
-        }
-
-
-    }
-
-    @RequestMapping(value = "/queryContract",method = RequestMethod.GET)
-    public  String queryContract(@RequestParam String username,ModelMap map){
-        List<Contract> contracts=customerService.queryContract(username);
-        if (contracts!=null)
-        {
-            map.addAttribute("contracts",contracts);
-            return "customer_queryContract";
-        }
-        else
-        {
-            Exception e=new Exception("没有合同");
-            map.addAttribute("exception",e);
-
-            return "error";
-
-        }
-
+    @RequestMapping(value = "/queryUrgeBill",method = RequestMethod.GET)
+    public  String queryUrgeBill(@RequestParam String username,ModelMap map){
+        return "error";
     }
 
 

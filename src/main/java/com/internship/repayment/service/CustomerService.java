@@ -10,6 +10,4 @@ import java.util.List;
 @Service
 public interface CustomerService {
     Result<Customer> login(String username, String password);
-     List<Seller> querySeller(String username);
-     List<Contract> queryContract(String username);
 }
