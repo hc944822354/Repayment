@@ -1,5 +1,6 @@
 package com.internship.repayment.controller;
 
+import com.internship.repayment.VO.Result;
 import com.internship.repayment.entity.Contract;
 import com.internship.repayment.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,18 @@ public class ContractController {
     private ContractService contractService;
 
     @RequestMapping(value = "/queryContract",method = RequestMethod.GET)
-    public  String queryContract(@RequestParam String username, ModelMap map){
-        List<Contract> contracts=contractService.queryContract(username);
-        if (contracts!=null)
-        {
-            map.addAttribute("contracts",contracts);
+    public String queryContract(@RequestParam String username,ModelMap map){
+        Result<List<Contract>> results=contractService.queryContract(username);
+        if (results.getState().equals(Result.SUCCESS)){
+            map.addAttribute("contracts",results.getResult());
             return "customer_queryContract";
-        }
-        else
-        {
-            Exception e=new Exception("没有合同");
+        }else {
+            Exception e = new Exception("没有签订合同");
             map.addAttribute("exception",e);
-
             return "error";
-
         }
     }
+
+
+
 }
