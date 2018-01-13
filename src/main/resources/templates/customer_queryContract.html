@@ -1,4 +1,3 @@
-
 <html xmlns:th="http://www.thymeleaf.org">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
@@ -7,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}"/>
     <script type="text/javascript" src="../static/js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
-<body>
-<div class="topbar-wrap white">
+<body >
+<div th:object="${session.customer}" class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
             <ul class="navbar-list clearfix">
@@ -16,10 +15,10 @@
             </ul>          
         </div>
         <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li>某某某,欢迎你&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                <li><a href="customer_index.html">切换用户</a></li>
-                <li><a href="index.html">退出登录</a></li>
+            <ul  class="top-info-list clearfix">
+                <li th:text="*{name}+'欢迎您'"></li>
+                <li><a href="/repayment/customer/">切换用户</a></li>
+                <li><a href="/repayment/">退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -31,14 +30,14 @@
         </div>
         <div class="sidebar-content">
             <ul class="sidebar-list">
-                               <li>
+                <li>
                     <a href="#"><i class="icon-font"></i>信息查询</a>
                     <ul class="sub-menu">
-                        <li><a href="customer_querySeller.html"><i class="icon-font"></i>查询责任销售员</a></li>
-                        <li><a href="customer_queryContract.html"><i class="icon-font"></i>合同信息查询</a></li>
-
-                        <li><a href="customer_queryRepayment.html"><i class="icon-font"></i>回款记录查询</a></li>
-                        <li><a href="customer_queryUrgeBill.html"><i class="icon-font"></i>催款记录查询</a></li>
+                        <li><a th:href="@{/repayment/seller/querySeller}" ><i class="icon-font"></i>查询责任销售员</a></li>
+                        <li><a th:href="@{/repayment/contract/queryContract}"><i class="icon-font"></i>合同信息查询</a></li>
+                        <li><a th:href="@{/repayment/bill/queryBill}"><i class="icon-font"></i>账单信息查询</a></li>
+                        <li><a th:href="@{/repayment/repayment/queryRepayment}"><i class="icon-font"></i>回款记录查询</a></li>
+                        <li><a th:href="@{/repayment/urge/queryUrgeBills}"><i class="icon-font"></i>催款记录查询</a></li>
                         <li><a href="customer_queryDelayApply.html"><i class="icon-font"></i>延期申请查询</a></li>
                     </ul>
                 </li>
@@ -84,8 +83,6 @@
                                 <td th:text="*{contract.begintime}"></td>
                                 <td th:text="*{contract.cuttime}"></td>
                                 <td th:text="*{contract.summoney}"></td>
-
-
                             </tr>
                          </table>
                     </div>

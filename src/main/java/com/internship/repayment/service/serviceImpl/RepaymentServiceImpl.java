@@ -25,9 +25,6 @@ public class RepaymentServiceImpl implements RepaymentService {
         }
         else
             results=Result.getFailInstance("没有回款记录",null);
-
         return results;
-
-
     }
 }

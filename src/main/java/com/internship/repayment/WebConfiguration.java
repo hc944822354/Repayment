@@ -1,10 +1,13 @@
 package com.internship.repayment;
 
+import com.internship.repayment.utils.UserSecurityInterceptor;
 import org.apache.catalina.filters.RemoteIpFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -13,7 +16,16 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.List;
 
 @Configuration
-public class WebConfiguration extends WebMvcConfigurerAdapter {/*
+public class WebConfiguration extends WebMvcConfigurerAdapter {
+    @Autowired
+    private UserSecurityInterceptor userSecurityInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(userSecurityInterceptor).addPathPatterns("/repayment/customer/querySeller");
+    }
+
+    /*
     @Bean
     public RemoteIpFilter remoteIpFilter(){
         return new RemoteIpFilter();

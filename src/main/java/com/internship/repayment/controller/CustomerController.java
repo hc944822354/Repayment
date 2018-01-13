@@ -1,13 +1,8 @@
 package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
-import com.internship.repayment.entity.Contract;
 import com.internship.repayment.entity.Customer;
-import com.internship.repayment.entity.Seller;
-import com.internship.repayment.repository.CustomerRepository;
 import com.internship.repayment.service.CustomerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
