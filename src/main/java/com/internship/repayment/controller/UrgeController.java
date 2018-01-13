@@ -30,6 +30,7 @@ public class UrgeController {
         if (urgeBillsResult.getState().equals(Result.SUCCESS)){
             List<Urge> urges = urgeBillsResult.getResult();
             map.addAttribute("urgeBills",urgeBillsResult.getResult());
+            session.setAttribute("customer",customer);
             return "customer_queryUrgeBill";
         }else {
             Exception e = new Exception("无欠款记录");

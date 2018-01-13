@@ -29,6 +29,7 @@ public class SellerController {
         Result<List<Seller>> results=sellerService.querySeller(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)){
             map.addAttribute("sellers",results.getResult());
+            session.setAttribute("customer",customer);
             return "customer_querySeller";
         }else {
             Exception e = new Exception("没有负责销售员");

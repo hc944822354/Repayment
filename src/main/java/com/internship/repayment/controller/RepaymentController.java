@@ -28,6 +28,7 @@ public class RepaymentController {
         Result<List<Repayment>> results = repaymentService.queryRepayment(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)) {
             map.addAttribute("repayments", results.getResult());
+            session.setAttribute("customer",customer);
             return "customer_queryRepayment";
         } else {
             Exception e = new Exception("没有回款记录");
