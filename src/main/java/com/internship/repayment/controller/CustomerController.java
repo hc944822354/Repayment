@@ -44,4 +44,12 @@ public class CustomerController{
             return "error";
         }
     }
+
+    @RequestMapping(value = "/querySelf",method = RequestMethod.GET)
+    public String querySelf(@ModelAttribute Customer customer,ModelMap map,HttpSession session){
+        Customer acustomer = (Customer) session.getAttribute("customer");
+        session.setAttribute("customer",acustomer);
+        return "customer_query_self";
+    }
+
 }

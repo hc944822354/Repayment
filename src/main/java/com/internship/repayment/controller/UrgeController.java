@@ -28,6 +28,7 @@ public class UrgeController {
         Customer customer = (Customer) session.getAttribute("customer");
         Result<List<Urge>> urgeBillsResult = urgeService.queryUrgeBills(customer.getUsername());
         if (urgeBillsResult.getState().equals(Result.SUCCESS)){
+            session.setAttribute("customer",customer);
             List<Urge> urges = urgeBillsResult.getResult();
             map.addAttribute("urgeBills",urgeBillsResult.getResult());
             return "customer_queryUrgeBill";
