@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -34,10 +35,11 @@ public class CustomerController{
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@ModelAttribute Customer customer, ModelMap map){
+    public String login(@ModelAttribute Customer customer, ModelMap map, HttpSession session){
         Result<Customer> result = customerService.login(customer.getUsername(),customer.getPassword());
         if (result.getState().equals(Result.SUCCESS)){
-            map.addAttribute("customer",result.getResult());
+            Customer curCustomer = result.getResult();
+            session.setAttribute("customer",curCustomer);
             map.addAttribute("query_seller","/repayment/customer/querySeller");
             return "customer_login_success";
         }else {

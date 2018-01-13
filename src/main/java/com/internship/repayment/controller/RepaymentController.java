@@ -1,6 +1,8 @@
 package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
+import com.internship.repayment.entity.Contract;
+import com.internship.repayment.entity.Customer;
 import com.internship.repayment.entity.Repayment;
 import com.internship.repayment.service.RepaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,8 +23,9 @@ public class RepaymentController {
     private RepaymentService repaymentService;
 
     @RequestMapping(value = "/queryRepayment", method = RequestMethod.GET)
-    public String queryRepayment(@RequestParam String username, ModelMap map) {
-        Result<List<Repayment>> results = repaymentService.queryRepayment(username);
+    public String queryRepayment(HttpSession session, ModelMap map) {
+        Customer customer = (Customer) session.getAttribute("customer");
+        Result<List<Repayment>> results = repaymentService.queryRepayment(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)) {
             map.addAttribute("repayments", results.getResult());
             return "customer_queryRepayment";

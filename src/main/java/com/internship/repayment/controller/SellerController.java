@@ -1,6 +1,7 @@
 package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
+import com.internship.repayment.entity.Customer;
 import com.internship.repayment.entity.Seller;
 import com.internship.repayment.service.CustomerService;
 import com.internship.repayment.service.SellerService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,8 +24,9 @@ public class SellerController {
     private SellerService sellerService;
 
     @RequestMapping(value = "/querySeller",method = RequestMethod.GET)
-    public  String querySeller(@RequestParam String username, ModelMap map){
-        Result<List<Seller>> results=sellerService.querySeller(username);
+    public  String querySeller(HttpSession session, ModelMap map){
+        Customer customer = (Customer) session.getAttribute("customer");
+        Result<List<Seller>> results=sellerService.querySeller(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)){
             map.addAttribute("sellers",results.getResult());
             return "customer_querySeller";

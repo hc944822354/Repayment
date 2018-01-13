@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
     <script type="text/javascript" src="../js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
-<body th:object="${customer}">
+<body th:object="${session.customer}">
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
@@ -34,10 +34,10 @@
                 <li>
                     <a href="#"><i class="icon-font"></i>信息查询</a>
                     <ul class="sub-menu">
-                        <li><a th:href="@{/repayment/seller/querySeller(username=*{username})}" ><i class="icon-font"></i>查询责任销售员</a></li>
-                        <li><a th:href="@{/repayment/contract/queryContract(username=*{username})}"><i class="icon-font"></i>合同信息查询</a></li>
-                        <li><a th:href="@{/repayment/repayment/queryRepayment(username=*{username})}"><i class="icon-font"></i>回款记录查询</a></li>
-                        <li><a th:href="@{/repayment/urge/queryUrgeBills(username=*{username})}"><i class="icon-font"></i>催款记录查询</a></li>
+                        <li><a th:href="@{/repayment/seller/querySeller}" ><i class="icon-font"></i>查询责任销售员</a></li>
+                        <li><a th:href="@{/repayment/contract/queryContract}"><i class="icon-font"></i>合同信息查询</a></li>
+                        <li><a th:href="@{/repayment/repayment/queryRepayment}"><i class="icon-font"></i>回款记录查询</a></li>
+                        <li><a th:href="@{/repayment/urge/queryUrgeBills}"><i class="icon-font"></i>催款记录查询</a></li>
                     </ul>
                 </li>
                 <li>

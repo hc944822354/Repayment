@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -23,9 +24,9 @@ public class UrgeController {
     private UrgeService urgeService;
 
     @RequestMapping(value = "/queryUrgeBills",method = RequestMethod.GET)
-    public  String queryUrgeBill(@RequestParam String username, ModelMap map){
-        Result customerResult = customerService.findCustomer(username);
-        Result<List<Urge>> urgeBillsResult = urgeService.queryUrgeBills(username);
+    public  String queryUrgeBill(HttpSession session, ModelMap map){
+        Customer customer = (Customer) session.getAttribute("customer");
+        Result<List<Urge>> urgeBillsResult = urgeService.queryUrgeBills(customer.getUsername());
         if (urgeBillsResult.getState().equals(Result.SUCCESS)){
             List<Urge> urges = urgeBillsResult.getResult();
             map.addAttribute("urgeBills",urgeBillsResult.getResult());
@@ -33,7 +34,7 @@ public class UrgeController {
         }else {
             Exception e = new Exception("无欠款记录");
             map.addAttribute("exception",e);
-            map.addAttribute("url",customerResult.getResult().toString());
+            map.addAttribute("url",customer.toString());
             return "error";
         }
     }
