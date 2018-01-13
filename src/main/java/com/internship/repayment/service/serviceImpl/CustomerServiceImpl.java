@@ -48,6 +48,20 @@ public class CustomerServiceImpl implements CustomerService{
         return result;
     }
 
+    @Override
+    public Result<Customer> updateSelf(Customer customer) {
+        Customer customer1 = customerRepository.findCustomerByUsername(customer.getUsername());
+        Result<Customer> result ;
+        if (customer1!=null) {
+            Customer customer2 = customerRepository.save(customer);
+            result = Result.getSuccessInstance(customer2);
+            return result;
+        }else {
+            result = Result.getFailInstance("用户不存在",customer);
+            return result;
+        }
+    }
+
     @Autowired
     private ContractRepository contractRepository;
     @Override
