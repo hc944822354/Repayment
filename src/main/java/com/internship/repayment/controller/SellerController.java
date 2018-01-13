@@ -28,6 +28,7 @@ public class SellerController {
         Customer customer = (Customer) session.getAttribute("customer");
         Result<List<Seller>> results=sellerService.querySeller(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)){
+            session.setAttribute("customer",customer);
             map.addAttribute("sellers",results.getResult());
             session.setAttribute("customer",customer);
             return "customer_querySeller";

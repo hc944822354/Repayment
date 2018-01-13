@@ -2,12 +2,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>客户回款后台管理</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
-    <script type="text/javascript" src="../static/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" src="../static/js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
 <body>
-<div class="topbar-wrap white">
+<div th:object="${session.customer}" class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
             <ul class="navbar-list clearfix">
@@ -54,7 +54,7 @@
         </div>
     </div>
     <!--/sidebar-->
-        <div class="main-wrap">
+        <div th:object="${session.customer}" class="main-wrap">
           <div class="crumb-wrap">
             <div class="crumb-list">
             <i class="icon-font"></i>
@@ -70,22 +70,22 @@
             <div class="result-content">
                 <ul class="sys-info-list">
                     <li>
-                        <label class="res-lab">客户姓名：</label><span class="res-info">#####</span>
+                        <label class="res-lab">客户姓名：</label><span class="res-info" th:text="*{name}"></span>
                     </li>
                     <li>
-                        <label class="res-lab">客户密码：</label><span class="res-info">#####</span>
+                        <label class="res-lab">客户密码：</label><span class="res-info" th:text="*{password}"></span>
                     </li>
                     <li>
-                        <label class="res-lab">性别：</label><span class="res-info">#####</span>
+                        <label class="res-lab">性别：</label><span class="res-info" th:text="*{gender}"></span>
                     </li>
                     <li>
-                        <label class="res-lab">电话：</label><span class="res-info">#####</span>
+                        <label class="res-lab">电话：</label><span class="res-info" th:text="*{telphone}"></span>
                     </li>
                     <li>
-                        <label class="res-lab">住址：</label><span class="res-info">#####</span>
+                        <label class="res-lab">住址：</label><span class="res-info" th:text="*{address}"></span>
                     </li>
                     <li>
-                        <label class="res-lab">信誉度：</label><span class="res-info">#####</span>
+                        <label class="res-lab">信誉度：</label><span class="res-info" th:text="*{reputation}"></span>
                     </li>
                 </ul>
             </div>

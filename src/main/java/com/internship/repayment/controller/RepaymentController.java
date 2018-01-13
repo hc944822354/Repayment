@@ -27,6 +27,7 @@ public class RepaymentController {
         Customer customer = (Customer) session.getAttribute("customer");
         Result<List<Repayment>> results = repaymentService.queryRepayment(customer.getUsername());
         if (results.getState().equals(Result.SUCCESS)) {
+            session.setAttribute("customer",customer);
             map.addAttribute("repayments", results.getResult());
             session.setAttribute("customer",customer);
             return "customer_queryRepayment";
