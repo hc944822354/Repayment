@@ -2,6 +2,7 @@ package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
 import com.internship.repayment.entity.Customer;
+import com.internship.repayment.entity.Seller;
 import com.internship.repayment.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,24 @@ public class CustomerController{
         Customer acustomer = (Customer) session.getAttribute("customer");
         session.setAttribute("customer",acustomer);
         return "customer_query_self";
+    }
+
+    @RequestMapping(value = "/queryCustomer",method = RequestMethod.GET)
+    public  String queryCustomer(HttpSession session, ModelMap map){
+        Seller seller = (Seller) session.getAttribute("seller");
+        Result<List<Customer>> results=customerService.queryCustomer(seller.getUsername());
+        if (results.getState().equals(Result.SUCCESS)){
+            session.setAttribute("seller",seller);
+            map.addAttribute("customers",results.getResult());
+            session.setAttribute("seller",seller);
+            return "seller_queryCustomer";
+        }else {
+            Exception e = new Exception("没有负责客户");
+            map.addAttribute("exception",e);
+            return "error";
+        }
+
+
     }
 
 }
