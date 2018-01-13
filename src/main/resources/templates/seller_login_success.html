@@ -1,14 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>客户回款后台管理</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
-    <script type="text/javascript" src="../static/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" src="../js/libs/modernizr.min.js" th:src="@{/js/libs/modernizr.min.js}"></script>
 </head>
-<body>
+<body th:object="${session.seller}">
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
@@ -18,7 +17,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li>某某某,欢迎你&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li th:text="*{name}+'欢迎您'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                 <li><a href="Sellerindex.html">切换用户</a></li>
                 <li><a href="index.html">退出登录</a></li>
             </ul>
@@ -35,7 +34,7 @@
                 <li>
                     <a href="#"><i class="icon-font"></i>信息查询</a>
                     <ul class="sub-menu">
-                        <li><a href="seller_queryCustomer.html"><i class="icon-font"></i>查询负责客户信息</a></li>
+                        <li><a th:href="@{/repayment/customer/queryCustomer}"><i class="icon-font"></i>查询负责客户信息</a></li>
                         <li><a href="seller_queryContract.html"><i class="icon-font"></i>相关合同信息查询</a></li>
                         <li><a href="seller_queryCustomerBill.html"><i class="icon-font"></i>客户还款记录</a></li>
                         <li><a href="seller_queryDelayApply.html"><i class="icon-font"></i>查询客户延期申请</a></li>

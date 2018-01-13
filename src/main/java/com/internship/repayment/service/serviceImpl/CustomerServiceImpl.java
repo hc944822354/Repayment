@@ -48,5 +48,28 @@ public class CustomerServiceImpl implements CustomerService{
         return result;
     }
 
+    @Autowired
+    private ContractRepository contractRepository;
+    @Override
+    public Result <List<Customer> >queryCustomer(String username){
+        List<Contract> contracts=contractRepository.findContractsBySeller_Username(username);
+        Result<List<Customer>> results;
+        if(contracts!=null) {
+            List<Customer> customers = new LinkedList<Customer>();
+            for (Contract contract : contracts
+                    ) {
+                customers.add(contract.getCustomer());
+
+            }
+            results=Result.getSuccessInstance(customers);
+            results.setMsg("查询成功");
+        }
+        else
+            results=Result.getFailInstance("没有负责客户",null);
+
+        return results;
+
+    }
+
 
 }

@@ -2,14 +2,17 @@ package com.internship.repayment.controller;
 
 import com.internship.repayment.VO.Result;
 import com.internship.repayment.entity.Customer;
+import com.internship.repayment.entity.Seller;
 import com.internship.repayment.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
 import java.util.*;
 
 @Controller
@@ -50,6 +53,22 @@ public class CustomerController{
         Customer acustomer = (Customer) session.getAttribute("customer");
         session.setAttribute("customer",acustomer);
         return "customer_query_self";
+    }
+
+    @RequestMapping(value = "/queryCustomer",method = RequestMethod.GET)
+    public String queryCustomer(HttpSession session,ModelMap map){
+        Seller seller = (Seller) session.getAttribute("seller");
+        Result<List<Customer>> results=customerService.queryCustomer(seller.getUsername());
+        if (results.getState().equals(Result.SUCCESS)){
+            session.setAttribute("seller",seller);
+            map.addAttribute("customers",results.getResult());
+            return "seller_queryCustomer";
+        }else {
+            Exception e = new Exception("没有负责销售员");
+            map.addAttribute("exception",e);
+            return "error";
+        }
+
     }
 
 }

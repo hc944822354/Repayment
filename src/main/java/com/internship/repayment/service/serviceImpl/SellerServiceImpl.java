@@ -2,8 +2,10 @@ package com.internship.repayment.service.serviceImpl;
 
 import com.internship.repayment.VO.Result;
 import com.internship.repayment.entity.Contract;
+
 import com.internship.repayment.entity.Seller;
 import com.internship.repayment.repository.ContractRepository;
+import com.internship.repayment.repository.SellerRepository;
 import com.internship.repayment.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +37,25 @@ public class SellerServiceImpl implements SellerService {
         return results;
 
     }
+
+    @Autowired
+    private SellerRepository sellerRepository;
+
+
+    @Override
+    public Result<Seller> login(String username, String password) {
+        Seller seller = sellerRepository.findSellerByName(username);
+        //账户存在且密码正确
+        Result<Seller> result;
+        if (seller!=null&&seller.getPassword().equals(password)){
+            result = Result.getSuccessInstance(seller);
+            result.setMsg("登陆成功");
+        }else if (seller!=null){
+            result = Result.getFailInstance("密码错误",seller);
+        }else {
+            result = Result.getFailInstance("账户不存在",null);
+        }
+        return result;
+    }
+
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SellerService {
    Result<List<Seller>> querySeller(String username);
+   Result<Seller> login(String username,String password);
 }

@@ -11,4 +11,6 @@ import java.util.List;
 public interface CustomerService {
     Result<Customer> login(String username, String password);
     Result<Customer> findCustomer(String username);
+    Result<List<Customer>> queryCustomer(String username);
+
 }
